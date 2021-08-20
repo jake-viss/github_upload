@@ -67,7 +67,7 @@ loan = {
 loan_price = loan.get("loan_price")
 remaining_months = loan.get("remaining_months")
 future_value = loan.get("future_value")
-print(loan_price, remaining_months, future_value)
+# print(loan_price, remaining_months, future_value) Used this to test the .get code above.
 
 
 
@@ -195,4 +195,22 @@ output_path = Path("inexpensive_loans.csv")
 
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
-# YOUR CODE HERE!
+with open(output_path, 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+
+    csvwriter.writerow(header)
+    for row in inexpensive_loans:
+        csvwriter.writerow(row.values())
+    
+
+#These are lines of code I've already tried to get the csvwriter to give me the appropriate output.
+# csvwriter.writerow(inexpensive_loans[0:2])
+# csvwriter.writerow(inexpensive_loans)
+
+    # csvwriter.writerow(inexpensive_loans[0])
+    # csvwriter.writerow(inexpensive_loans[1])
+
+    #fieldnames = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
+    #csvwriter = csv.Dictwriter(csvfile, fieldnames) - this gave me the error: <AttributeError: module 'csv' has no attribute 'Dictwriter'>
+    #csvwriter.writeheader()
+    #csvwriter.writerow(inexpensive_loans)
